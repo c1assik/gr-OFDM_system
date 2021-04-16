@@ -1,0 +1,16 @@
+id: OFDM_system_OFDM_
+label: 'OFDM '
+category: '[Ofdm_system]'
+templates:
+  imports: import OFDM_system
+  make: OFDM_system.OFDM_()
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+  vlen: '64'
+file_format: 1

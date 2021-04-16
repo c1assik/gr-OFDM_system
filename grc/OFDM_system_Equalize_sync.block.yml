@@ -1,0 +1,15 @@
+id: OFDM_system_Equalize_sync
+label: Equalize sync
+category: '[Ofdm_system]'
+templates:
+  imports: import OFDM_system
+  make: OFDM_system.Equalize_sync()
+inputs:
+- label: in
+  domain: stream
+  dtype: complex
+outputs:
+- label: out
+  domain: stream
+  dtype: complex
+file_format: 1
