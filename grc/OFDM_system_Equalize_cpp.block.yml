@@ -12,4 +12,5 @@ outputs:
 - label: out
   domain: stream
   dtype: complex
+  multiplicity: '2'
 file_format: 1

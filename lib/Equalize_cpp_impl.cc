@@ -44,7 +44,7 @@ namespace gr {
     Equalize_cpp_impl::Equalize_cpp_impl()
       : gr::block("Equalize_cpp",
               gr::io_signature::make(1, 1, sizeof(gr_complex)),
-              gr::io_signature::make(1, 1, sizeof(gr_complex)))
+              gr::io_signature::make(1, 2, sizeof(gr_complex)))
     {}
 
     /*
@@ -71,8 +71,9 @@ namespace gr {
     {
       const gr_complex *in = (const gr_complex *) input_items[0];
       gr_complex *out = (gr_complex *) output_items[0];
+      gr_complex *out2 = (gr_complex *) output_items[1];
 
-      int fft_len = 64; //ftt size 
+      int fft_len = 64;
       int k = 0;
       int preamb_count = 0;
 
@@ -87,23 +88,26 @@ namespace gr {
 
       for(int i = 0; i != fft_len; i++)
       {
-        estim.push_back(std::isinf(std::abs(in[fft_len + i]/sync_word[k])) ? 0 : (in[fft_len + i]/sync_word[k]));
+        estim.push_back(std::isinf(std::abs(in[64 + i]/sync_word[i])) ? 0 : (in[64 + i]/sync_word[i]));
+       
         //estim.push_back(in[64+i]);
         
-        k++;
-        if (k == fft_len) {k = 0;} 
+        
+        //consume_each(64);
       }
 
       for(int i = 7; i != estim.size(); i = i + 2)
       {
         estim[i+1] = estim[i];
+         
       }
 
   
       for(int i = 0; i < (int)ninput_items[0]; i++)
       { 
-       
-        out[i] = (std::isinf(std::abs(in[i]/estim[k]))) ? 0 : (in[i]/estim[k]);
+     
+       out2[k] = estim[k];
+        out[i] = (std::isinf(std::abs(in[64 + i]/estim[k]))) ? 0 : (in[64 + i]/estim[k]);
         //eq.push_back(std::isinf(std::abs(in[fft_len +  i]/estim[k])) ? 0 : (in[fft_len + i]/estim[k]));
         k++;
         if (k == fft_len) {k = 0;} 
@@ -113,20 +117,20 @@ namespace gr {
       
   
       
-      //  for(int i = 0; i != estim.size(); i++)
-      // {
+       for(int i = 0; i != estim.size(); i++)
+      {
         
-      //   myfile << std::abs(estim[i]) << std::endl;
+        myfile << std::abs(estim[i]) << std::endl;
       
-      // }
+      }
 
 
-      // myfile.close();
+      myfile.close();
     
 
       
 
-      //consume_each(1);
+      consume_each(noutput_items);
       // Tell runtime system how many output items we produced.
       return noutput_items;
     }

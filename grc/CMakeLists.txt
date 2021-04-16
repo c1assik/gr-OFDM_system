@@ -19,7 +19,6 @@
 # Boston, MA 02110-1301, USA.
 install(FILES
     OFDM_system_OFDM_.block.yml
-    OFDM_system_Equalize_py.block.yml
     OFDM_system_Equalize_cpp.block.yml
     DESTINATION share/gnuradio/grc/blocks
 )

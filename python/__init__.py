@@ -32,6 +32,6 @@ except ImportError:
     pass
 
 # import any pure python here
-from .Equalize_py import Equalize_py
+
 
 #
