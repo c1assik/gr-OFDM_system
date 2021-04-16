@@ -92,10 +92,6 @@ namespace gr {
         
         k++;
         if (k == fft_len) {k = 0;} 
-
-        
-
-         
       }
 
       for(int i = 7; i != estim.size(); i = i + 2)
@@ -130,7 +126,7 @@ namespace gr {
 
       
 
-      consume_each(1);
+      //consume_each(1);
       // Tell runtime system how many output items we produced.
       return noutput_items;
     }

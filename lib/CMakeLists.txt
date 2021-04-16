@@ -25,7 +25,7 @@ include(GrPlatform) #define LIB_SUFFIX
 list(APPEND OFDM_system_sources
     OFDM__impl.cc
     Equalize_cpp_impl.cc
-    Equalize_sync_impl.cc )
+    )
 
 set(OFDM_system_sources "${OFDM_system_sources}" PARENT_SCOPE)
 if(NOT OFDM_system_sources)

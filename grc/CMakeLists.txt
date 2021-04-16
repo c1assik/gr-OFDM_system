@@ -21,5 +21,5 @@ install(FILES
     OFDM_system_OFDM_.block.yml
     OFDM_system_Equalize_py.block.yml
     OFDM_system_Equalize_cpp.block.yml
-    OFDM_system_Equalize_sync.block.yml DESTINATION share/gnuradio/grc/blocks
+    DESTINATION share/gnuradio/grc/blocks
 )

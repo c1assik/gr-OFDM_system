@@ -25,5 +25,5 @@ install(FILES
     api.h
     OFDM_.h
     Equalize_cpp.h
-    Equalize_sync.h DESTINATION include/OFDM_system
+    DESTINATION include/OFDM_system
 )
